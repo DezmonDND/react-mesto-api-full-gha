@@ -170,7 +170,7 @@ function App() {
     auth.getContent(token).then((data) => {
       if (data) {
         setLoggedIn(true);
-        setUserEmail(data.data.email)
+        setUserEmail(data.email)
         navigate('/');
       } else {
         setLoggedIn(false);
