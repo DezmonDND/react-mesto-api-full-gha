@@ -38,7 +38,7 @@ module.exports.createUser = (req, res, next) => {
 
 module.exports.getUsers = (req, res, next) => {
     User.find({})
-        .then(users => res.send({ data: users }))
+        .then(users => res.send(users))
         .catch((err) => {
             return next(err);
         });
@@ -50,7 +50,7 @@ const findUserById = (req, res, userData, next) => {
             if (!user) {
                 next(new NotFoundError('Пользователь по указанному _id не найден.'));
             } else {
-                res.status(200).send({ data: user });
+                res.status(200).send(user);
             }
         })
         .catch((err) => {
@@ -112,7 +112,7 @@ module.exports.updateUsersData = (req, res, next) => {
             if (!user) {
                 next(new NotFoundError('Пользователь по указанному _id не найден.'))
             } else {
-                res.status(200).send({ data: user });
+                res.status(200).send(user);
             }
         })
         .catch((err) => {
@@ -139,7 +139,7 @@ module.exports.updateAvatar = (req, res, next) => {
             if (!user) {
                 next(new NotFoundError('Пользователь по указанному _id не найден.'))
             } else {
-                res.status(200).send({ data: user });
+                res.status(200).send(user);
             }
         })
         .catch((err) => {
