@@ -11,11 +11,15 @@ module.exports.getCards = (req, res, next) => {
 };
 
 module.exports.createCard = (req, res, next) => {
-    const { name, link } = req.body;
+    // const { name, link } = req.body;
+    const { cardData} = req.body;
+    cardData.owner = req.user._id;
 
-    Card.create({ name, link, owner: req.user._id })
+    // Card.create({ name, link, owner: req.user._id })
+    Card.create(cardData)
         .then((card) => res.status(201).send(card))
         .catch((err) => {
+            // console.log(err);
             if (err instanceof mongoose.Error.ValidationError) {
                 next(new BadRequestError('Переданы некорректные данные при создании карточки.'));
             } else {

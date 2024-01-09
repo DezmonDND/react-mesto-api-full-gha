@@ -61,6 +61,7 @@ export class Api {
                 name: inputValues.profileName,
                 link: inputValues.profileAbout
             })
+            // body: JSON.stringify(inputValues)
         })
             .then(this._checkError);
     }

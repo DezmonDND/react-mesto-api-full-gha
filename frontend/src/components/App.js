@@ -144,6 +144,7 @@ function App() {
   function handleAddPlaceSubmit(inputValues) {
     setLoading(true)
     api.sentNewCard({ profileName: inputValues.name, profileAbout: inputValues.link })
+      // api.sentNewCard(inputValues)
       .then((newCard) => {
         setCards([newCard, ...cards]);
         closeAllPopups();
