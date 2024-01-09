@@ -12,7 +12,7 @@ export class Api {
     }
 
     getUserInfo() {
-        return fetch('https://nomoreparties.co/v1/cohort-69/users/me', {
+        return fetch('https://denedoseikin.nomoredomainsmonster.ru/users/me', {
             headers: {
                 method: 'GET',
                 authorization: 'c42608e5-1ffc-4e2d-ae34-a3c104aa731f'
@@ -22,7 +22,7 @@ export class Api {
     }
 
     setUserInfo(inputValues) {
-        return fetch('https://mesto.nomoreparties.co/v1/cohort-69/users/me', {
+        return fetch('https://denedoseikin.nomoredomainsmonster.ru/users/me', {
             method: 'PATCH',
             headers: {
                 authorization: 'c42608e5-1ffc-4e2d-ae34-a3c104aa731f',
@@ -37,7 +37,7 @@ export class Api {
     }
 
     getInitialCards() {
-        return fetch('https://mesto.nomoreparties.co/v1/cohort-69/cards', {
+        return fetch('https://denedoseikin.nomoredomainsmonster.ru/cards', {
             headers: {
                 method: 'GET',
                 authorization: 'c42608e5-1ffc-4e2d-ae34-a3c104aa731f'
@@ -47,7 +47,7 @@ export class Api {
     }
 
     sentNewCard(inputValues) {
-        return fetch('https://mesto.nomoreparties.co/v1/cohort-69/cards', {
+        return fetch('https://denedoseikin.nomoredomainsmonster.ru/cards', {
             method: 'POST',
             headers: {
                 authorization: 'c42608e5-1ffc-4e2d-ae34-a3c104aa731f',
@@ -62,7 +62,7 @@ export class Api {
     }
 
     deleteCard(cardId) {
-        return fetch(`https://mesto.nomoreparties.co/v1/cohort-69/cards/${cardId}`, {
+        return fetch(`https://denedoseikin.nomoredomainsmonster.ru/cards/${cardId}`, {
             method: 'DELETE',
             headers: {
                 authorization: 'c42608e5-1ffc-4e2d-ae34-a3c104aa731f',
@@ -73,7 +73,7 @@ export class Api {
     }
 
     addLike(cardId) {
-        return fetch(`https://mesto.nomoreparties.co/v1/cohort-69/cards/likes/${cardId}`, {
+        return fetch(`https://denedoseikin.nomoredomainsmonster.ru/cards/likes/${cardId}`, {
             method: 'PUT',
             headers: {
                 authorization: 'c42608e5-1ffc-4e2d-ae34-a3c104aa731f',
@@ -84,7 +84,7 @@ export class Api {
     }
 
     deleteLike(cardId) {
-        return fetch(`https://mesto.nomoreparties.co/v1/cohort-69/cards/likes/${cardId}`, {
+        return fetch(`https://denedoseikin.nomoredomainsmonster.ru/cards/likes/${cardId}`, {
             method: 'DELETE',
             headers: {
                 authorization: 'c42608e5-1ffc-4e2d-ae34-a3c104aa731f',
@@ -95,7 +95,7 @@ export class Api {
     }
 
     updateAvatar(data) {
-        return fetch('https://mesto.nomoreparties.co/v1/cohort-69/users/me/avatar', {
+        return fetch('https://denedoseikin.nomoredomainsmonster.ru/users/me/avatar', {
             method: 'PATCH',
             headers: {
                 authorization: 'c42608e5-1ffc-4e2d-ae34-a3c104aa731f',
@@ -110,7 +110,7 @@ export class Api {
 }
 
 export const api = new Api({
-    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-69',
+    baseUrl: 'https://denedoseikin.nomoredomainsmonster.ru',
     headers: {
         authorization: 'c42608e5-1ffc-4e2d-ae34-a3c104aa731f',
         'Content-Type': 'application/json'
