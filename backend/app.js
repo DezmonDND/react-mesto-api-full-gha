@@ -8,9 +8,11 @@ const { ServerErrorHandler } = require('./errors/errorHandlers/ServerErrorHandle
 const { NotFoundErrorHandler } = require('./errors/errorHandlers/NotFoundErrorHandler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { PORT = 3000 } = process.env;
+const cors = require('cors');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
 
 mongoose.connect('mongodb://localhost:27017/mestodb', {
     useNewUrlParser: true,
