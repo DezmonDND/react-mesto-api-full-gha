@@ -141,10 +141,11 @@ function App() {
   }
 
   // Добавить карточку
-  function handleAddPlaceSubmit(inputValues) {
+  // function handleAddPlaceSubmit(inputValues) {
+  function handleAddPlaceSubmit({ name, link }) {
     setLoading(true)
-    api.sentNewCard({ profileName: inputValues.name, profileAbout: inputValues.link })
-      // api.sentNewCard(inputValues)
+    // api.sentNewCard({ profileName: inputValues.name, profileAbout: inputValues.link })
+    api.sentNewCard(name, link)
       .then((newCard) => {
         setCards([newCard, ...cards]);
         closeAllPopups();

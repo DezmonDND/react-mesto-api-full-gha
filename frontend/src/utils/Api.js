@@ -49,7 +49,7 @@ export class Api {
             .then(this._checkError);
     }
 
-    sentNewCard(inputValues) {
+    sentNewCard(name, link) {
         const token = localStorage.getItem('jwt');
         return fetch('https://api.denedoseikin.nomoredomainsmonster.ru/cards', {
             method: 'POST',
@@ -57,11 +57,14 @@ export class Api {
                 authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json'
             },
+            // body: JSON.stringify({
+            //     name: inputValues.profileName,
+            //     link: inputValues.profileAbout
+            // })
             body: JSON.stringify({
-                name: inputValues.profileName,
-                link: inputValues.profileAbout
+                name: name,
+                link: link
             })
-            // body: JSON.stringify(inputValues)
         })
             .then(this._checkError);
     }

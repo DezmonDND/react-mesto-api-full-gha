@@ -17,6 +17,7 @@ module.exports.createCard = (req, res, next) => {
     Card.create({ name, link, owner })
         .then((card) => res.status(201).send(card))
         .catch((err) => {
+            console.log(err);
             if (err instanceof mongoose.Error.ValidationError) {
                 next(new BadRequestError('Переданы некорректные данные при создании карточки.'));
             } else {
