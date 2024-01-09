@@ -6,18 +6,18 @@ const { default: mongoose } = require('mongoose');
 
 module.exports.getCards = (req, res, next) => {
     Card.find({})
-        .then((cards) => res.send(cards))
+        .then((cards) => res.send({ cards }))
         .catch((err) => next(err));
 };
 
 module.exports.createCard = (req, res, next) => {
     // const { name, link } = req.body;
-    const { cardData} = req.body;
+    const { cardData } = req.body;
     cardData.owner = req.user._id;
 
     // Card.create({ name, link, owner: req.user._id })
     Card.create(cardData)
-        .then((card) => res.status(201).send(card))
+        .then((card) => res.status(201).send({ card }))
         .catch((err) => {
             // console.log(err);
             if (err instanceof mongoose.Error.ValidationError) {
@@ -64,7 +64,7 @@ module.exports.likeCard = (req, res, next) => {
             if (!card) {
                 next(new NotFoundError('Передан несуществующий _id карточки.'));
             } else {
-                res.status(200).send(card);
+                res.status(200).send({ card });
             }
         })
         .catch((err) => {
@@ -86,7 +86,7 @@ module.exports.dislikeCard = (req, res, next) => {
     )
         .then((card) => {
             if (card) {
-                res.send(card);
+                res.send({ card });
             } else {
                 next(new NotFoundError('Передан несуществующий _id карточки.'));
             }
