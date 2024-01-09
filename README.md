@@ -7,7 +7,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 158.160.130.66
+IP 158.160.130.66
 
 Frontend https://denedoseikin.nomoredomainsmonster.ru
 
