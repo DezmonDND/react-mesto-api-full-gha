@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://auth.nomoreparties.co';
+export const BASE_URL = 'https://api.denedoseikin.nomoredomainsmonster.ru';
 
 function checkError(res) {
     if (res.ok) {
