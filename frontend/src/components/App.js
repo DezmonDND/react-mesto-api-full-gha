@@ -80,7 +80,7 @@ function App() {
   // Поставить лайк
   function handleCardLike(card) {
     // Снова проверяем, есть ли уже лайк на этой карточке
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const isLiked = card.likes.some(id => id === currentUser._id);
 
     // Отправляем запрос в API и получаем обновлённые данные карточки
     if (!isLiked) {
@@ -141,11 +141,9 @@ function App() {
   }
 
   // Добавить карточку
-  // function handleAddPlaceSubmit(inputValues) {
-  function handleAddPlaceSubmit({ name, link }) {
+  function handleAddPlaceSubmit(inputValues) {
     setLoading(true)
-    // api.sentNewCard({ profileName: inputValues.name, profileAbout: inputValues.link })
-    api.sentNewCard(name, link)
+    api.sentNewCard({ profileName: inputValues.name, profileAbout: inputValues.link })
       .then((newCard) => {
         setCards([newCard, ...cards]);
         closeAllPopups();

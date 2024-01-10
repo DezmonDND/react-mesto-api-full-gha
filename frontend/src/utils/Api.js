@@ -49,7 +49,7 @@ export class Api {
             .then(this._checkError);
     }
 
-    sentNewCard(name, link) {
+    sentNewCard(inputValues) {
         const token = localStorage.getItem('jwt');
         return fetch('https://api.denedoseikin.nomoredomainsmonster.ru/cards', {
             method: 'POST',
@@ -57,13 +57,9 @@ export class Api {
                 authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json'
             },
-            // body: JSON.stringify({
-            //     name: inputValues.profileName,
-            //     link: inputValues.profileAbout
-            // })
             body: JSON.stringify({
-                name: name,
-                link: link
+                name: inputValues.profileName,
+                link: inputValues.profileAbout
             })
         })
             .then(this._checkError);
@@ -83,7 +79,7 @@ export class Api {
 
     addLike(cardId) {
         const token = localStorage.getItem('jwt');
-        return fetch(`https://api.denedoseikin.nomoredomainsmonster.ru/cards/likes/${cardId}`, {
+        return fetch(`https://api.denedoseikin.nomoredomainsmonster.ru/cards/${cardId}/likes`, {
             method: 'PUT',
             headers: {
                 authorization: `Bearer ${token}`,
@@ -95,7 +91,7 @@ export class Api {
 
     deleteLike(cardId) {
         const token = localStorage.getItem('jwt');
-        return fetch(`https://api.denedoseikin.nomoredomainsmonster.ru/cards/likes/${cardId}`, {
+        return fetch(`https://api.denedoseikin.nomoredomainsmonster.ru/cards/${cardId}/likes`, {
             method: 'DELETE',
             headers: {
                 authorization: `Bearer ${token}`,

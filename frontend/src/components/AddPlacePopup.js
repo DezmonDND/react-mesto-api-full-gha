@@ -23,8 +23,8 @@ function AddPlacePopup(props) {
         e.preventDefault();
 
         onAddPlace({
-            name: name,
-            link: link,
+            name,
+            link,
         })
     }
 
