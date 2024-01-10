@@ -29,10 +29,9 @@ app.get('/crash-test', () => {
 });
 
 app.use(routes);
-app.use(errorLogger);
-
-app.use(errors());
 app.use('*', NotFoundErrorHandler);
+app.use(errorLogger);
+app.use(errors());
 app.use(ServerErrorHandler);
 
 app.listen(PORT, () => {

@@ -17,9 +17,7 @@ module.exports.createCard = (req, res, next) => {
     Card.create({ name, link, owner })
         .then((card) => res.status(201).send(card))
         .catch((err) => {
-            console.log(err);
             if (err instanceof mongoose.Error.ValidationError) {
-                console.log(err);
                 next(new BadRequestError('Переданы некорректные данные при создании карточки.'));
             } else {
                 next(err);
@@ -36,11 +34,12 @@ module.exports.deleteCard = (req, res, next) => {
             if (!card) {
                 next(new NotFoundError('Передан несуществующий _id карточки.'));
             }
-            if (userId !== card.owner.toString()) {
+            else if (userId !== card.owner.toString()) {
                 next(new ForbiddenError('Невозможно удалить карточку.'));
+            } else {
+                card.deleteOne()
+                    .then(() => res.status(200).send({ message: 'Карточка удалена' }));
             }
-            return card.deleteOne()
-                .then(() => res.status(200).send({ message: 'Карточка удалена' }));
         })
         .catch((err) => {
             if (err instanceof mongoose.Error.CastError) {

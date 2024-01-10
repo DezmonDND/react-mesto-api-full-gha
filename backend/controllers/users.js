@@ -72,34 +72,9 @@ module.exports.getOneUser = (req, res, next) => {
     findUserById(req, res, userData, next);
 }
 
-// const updateData = (req, res, dataForUpdate, next) => {
-//     User.findByIdAndUpdate(
-//         req.user._id,
-//         { dataForUpdate },
-//         {
-//             new: true,
-//             runValidators: true
-//         }
-//     )
-//         .then((user) => {
-//             if (!user) {
-//                 next(new NotFoundError('Пользователь по указанному _id не найден.'))
-//             } else {
-//                 res.status(200).send({ data: user });
-//             }
-//         })
-//         .catch((err) => {
-//             if (err instanceof mongoose.Error.ValidationError) {
-//                 next(new BadRequestError('Переданы некорректные данные при обновлении данных пользователя.'))
-//             } else {
-//                 next(err);
-//             }
-//         });
-// }
-
 module.exports.updateUsersData = (req, res, next) => {
     const { name, about } = req.body;
-    // updateData(req, res, name, about, next);
+
     User.findByIdAndUpdate(
         req.user._id,
         { name, about },
@@ -126,7 +101,7 @@ module.exports.updateUsersData = (req, res, next) => {
 
 module.exports.updateAvatar = (req, res, next) => {
     const { avatar } = req.body;
-    // updateData(req, res, avatar, next);
+
     return User.findByIdAndUpdate(
         req.user._id,
         { avatar },
