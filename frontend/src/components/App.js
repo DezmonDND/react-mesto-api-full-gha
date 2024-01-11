@@ -26,7 +26,6 @@ function App() {
   const [isImagePopupOpen, setImagePopupOpen] = useState(false);
   const [isDeleteCardPopupOpen, setDeleteCardPopupOpen] = useState(false);
   const [isInfoTooltipPopupOpen, setInfoTooltipPopupOpen] = useState(false);
-  const [isBurgerMenuOpen, setBurgerMenuOpen] = useState(false);
   // Выбранная карточка
   const [selectedCard, setSelectedCard] = useState({});
   // Массив карточек с сервера
@@ -50,7 +49,9 @@ function App() {
           setCurrentUser(userData);
           setCards(cardData);
         })
-        .catch((e) => console.log(`Error! ${e}`));
+        .catch((e) => {
+          console.log(`Error! ${e}`)
+        });
     }
   }, [loggedIn])
 
@@ -62,7 +63,6 @@ function App() {
     setImagePopupOpen(false)
     setDeleteCardPopupOpen(false)
     setInfoTooltipPopupOpen(false)
-    setBurgerMenuOpen(false)
   }
 
   // Открыть ImagePopup на selectedCard
@@ -156,12 +156,13 @@ function App() {
 
   // Авторизация
   function handleLogin(userData) {
-    setTokenState(userData.jwt)
+    setTokenState(userData.token)
     setToken(userData.token)
     setLoggedIn(true);
   }
 
-  function tokenCheck() {
+  useEffect(() => {
+    const token = localStorage.getItem('jwt');
     if (!token) {
       setLoggedIn(false);
       return;
@@ -175,20 +176,14 @@ function App() {
         setLoggedIn(false);
       }
     })
-      .catch((err) => {
-        console.log(err);
-      })
-  }
-
-  // Проверить токен при обновлении страницы
-  useEffect(() => {
-    tokenCheck();
-  }, []);
+      .catch((e) => console.log(`Error! ${e}`));
+  }, [navigate]);
 
   // Выход
   function handleLogout() {
     setLoggedIn(false);
     removeToken();
+    navigate('/sign-in');
   }
 
   // Отмена редиректа в адресной строке при обновлении страницы

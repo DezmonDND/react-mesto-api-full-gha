@@ -1,6 +1,7 @@
 export class Api {
-    constructor({ url }) {
+    constructor({ url, headers }) {
         this._url = url;
+        this._headers = headers;
     }
 
     // Обработать промис, если ОК, в строку, если ошибка - вывести в консоль ошибку

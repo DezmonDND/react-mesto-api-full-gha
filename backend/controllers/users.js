@@ -6,6 +6,8 @@ const NotFoundError = require('../errors/NotFoundError');
 const BadRequestError = require('../errors/BadRequestError');
 const AlreadyExistsError = require('../errors/AlreadyExistsError');
 
+const { JWT_SECRET } = process.env;
+
 module.exports.createUser = (req, res, next) => {
   const {
     name, about, avatar, email, password,

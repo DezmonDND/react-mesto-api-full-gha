@@ -29,6 +29,7 @@ export const autorize = (email, password) => {
         .then(checkError)
 };
 
+// Проверка токена, запрос контента
 export const getContent = (token) => {
     return fetch(`${BASE_URL}/users/me`, {
         method: 'GET',
@@ -37,9 +38,6 @@ export const getContent = (token) => {
             "Authorization": `Bearer ${token}`
         }
     })
-        .then((res) => {
-            return res.json();
-        })
-        .then(data => data)
+        .then(checkError)
         .catch((err) => console.log(err));
 }
