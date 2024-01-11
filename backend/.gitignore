@@ -2,6 +2,7 @@
 logs
 *.log
 npm-debug.log*
+test.jwt.js*
 
 # Dependency directory
 node_modules
