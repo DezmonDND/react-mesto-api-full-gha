@@ -5,16 +5,42 @@ const ForbiddenError = require('../errors/ForbiddenError');
 const Card = require('../models/card');
 
 module.exports.getCards = (req, res, next) => {
-  Card.find({})
+  const owner = req.user._id;
+  Card.find({ owner })
     .then((cards) => res.send(cards))
     .catch((err) => next(err));
 };
 
 module.exports.createCard = (req, res, next) => {
-  const { name, link } = req.body;
+  const {
+    country,
+    director,
+    duration,
+    year,
+    description,
+    image,
+    trailerLink,
+    thumbnail,
+    movieId,
+    nameRU,
+    nameEN,
+  } = req.body;
   const owner = req.user._id;
 
-  Card.create({ name, link, owner })
+  Card.create({
+    country,
+    director,
+    duration,
+    year,
+    description,
+    image,
+    trailerLink,
+    thumbnail,
+    movieId,
+    nameRU,
+    nameEN,
+    owner,
+  })
     .then((card) => res.status(201).send(card))
     .catch((err) => {
       if (err instanceof mongoose.Error.ValidationError) {
@@ -24,6 +50,21 @@ module.exports.createCard = (req, res, next) => {
       }
     });
 };
+
+// module.exports.createCard = (req, res, next) => {
+//   const { name, link } = req.body;
+//   const owner = req.user._id;
+
+//   Card.create({ name, link, owner })
+//     .then((card) => res.status(201).send(card))
+//     .catch((err) => {
+//       if (err instanceof mongoose.Error.ValidationError) {
+//         next(new BadRequestError('Переданы некорректные данные при создании карточки.'));
+//       } else {
+//         next(err);
+//       }
+//     });
+// };
 
 module.exports.deleteCard = (req, res, next) => {
   const { cardId } = req.params;
